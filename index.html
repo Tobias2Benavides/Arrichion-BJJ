@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arrichion BJJ — Tilburg University</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #D4A017;
+      --dark: #1a1a1a;
+      --cream: #f5f0e8;
+      --gray: #4a4a4a;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: var(--dark);
+    }
+
+    /* NAV */
+    nav {
+      background: var(--dark);
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      color: var(--gold);
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    nav .logo span { color: #fff; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+    nav ul a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '🦈';
+      font-size: 200px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      font-size: 1.1rem;
+      color: #bbb;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212,160,23,0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    /* SECTIONS */
+    section { padding: 80px 24px; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .section-title span { color: var(--gold); }
+    .section-sub {
+      text-align: center;
+      color: var(--gray);
+      margin-bottom: 48px;
+      font-size: 1rem;
+    }
+
+    /* FREE TRIAL BANNER */
+    .trial-banner {
+      background: var(--gold);
+      text-align: center;
+      padding: 20px 24px;
+    }
+    .trial-banner p {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    /* WHO CAN JOIN */
+    .who { background: var(--cream); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .card .icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .card p { color: var(--gray); font-size: 0.9rem; line-height: 1.5; }
+
+    /* SCHEDULE */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .schedule-card {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+    .schedule-card .day {
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .schedule-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 16px; }
+    .schedule-card .session {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    .schedule-card .session .type { color: #ccc; }
+    .schedule-card .session .time { color: var(--gold); font-weight: 700; }
+    .schedule-note {
+      text-align: center;
+      margin-top: 32px;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    /* ABOUT */
+    .about { background: var(--cream); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .about-card {
+      text-align: center;
+      padding: 24px;
+    }
+    .about-card .num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .about-card p { color: var(--gray); font-size: 0.9rem; margin-top: 6px; }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .contact-item {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    .contact-item .icon { font-size: 2rem; margin-bottom: 12px; }
+    .contact-item h4 { font-weight: 700; margin-bottom: 6px; }
+    .contact-item p, .contact-item a {
+      color: var(--gray);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .contact-item a:hover { color: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: #888;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer .social { font-size: 1.5rem; margin-bottom: 12px; }
+
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      .hero { padding: 70px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">ARRICHION <span>BJJ</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#join">Join</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🦈 STUDENT ASSOCIATION — TILBURG</div>
+  <h1>Train Brazilian<br /><span>Jiu Jitsu</span> at Tilburg</h1>
+  <p>A student-led BJJ association at Tilburg University. All levels welcome — no experience needed. Come try it free for 2 sessions.</p>
+  <a href="#contact" class="btn">Get 2 Free Trial Classes →</a>
+</section>
+
+<!-- TRIAL BANNER -->
+<div class="trial-banner">
+  <p>🎉 Your first 2 classes are completely FREE — no commitment, no experience needed</p>
+</div>
+
+<!-- WHO CAN JOIN -->
+<section class="who" id="join">
+  <div class="container">
+    <h2 class="section-title">Who Can <span>Join?</span></h2>
+    <p class="section-sub">Open to students from three universities in the Tilburg area</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🎓</div>
+        <h3>Tilburg University</h3>
+        <p>All faculties and programs welcome</p>
+      </div>
+      <div class="card">
+        <div class="icon">📚</div>
+        <h3>Fontys</h3>
+        <p>All Fontys students can train with us</p>
+      </div>
+      <div class="card">
+        <div class="icon">🏫</div>
+        <h3>Avans</h3>
+        <p>All Avans students are welcome on the mats</p>
+      </div>
+      <div class="card">
+        <div class="icon">🥋</div>
+        <h3>All Levels</h3>
+        <p>Complete beginners to experienced grapplers — everyone fits</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="container">
+    <h2 class="section-title">Class <span>Schedule</span></h2>
+    <p class="section-sub">Two sessions per week — come to one or both</p>
+    <div class="schedule-grid">
+      <div class="schedule-card">
+        <div class="day">Wednesday</div>
+        <h3>Evening Session</h3>
+        <div class="session">
+          <span class="type">No-Gi</span>
+          <span class="time">17:00</span>
+        </div>
+      </div>
+      <div class="schedule-card">
+        <div class="day">Saturday</div>
+        <h3>Morning Sessions</h3>
+        <div class="session">
+          <span class="type">Gi</span>
+          <span class="time">11:00</span>
+        </div>
+        <div class="session">
+          <span class="type">No-Gi</span>
+          <span class="time">12:45</span>
+        </div>
+      </div>
+    </div>
+    <p class="schedule-note">📍 Hall 4 — Sportcenter Tilburg</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <h2 class="section-title">Why <span>Arrichion?</span></h2>
+    <p class="section-sub">More than just a sport — it's a community</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="num">2</div>
+        <p>Free trial classes for every new member</p>
+      </div>
+      <div class="about-card">
+        <div class="num">3</div>
+        <p>Universities in our community</p>
+      </div>
+      <div class="about-card">
+        <div class="num">2×</div>
+        <p>Weekly training sessions</p>
+      </div>
+      <div class="about-card">
+        <div class="num">0</div>
+        <p>Experience needed to start</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Come <span>Train With Us</span></h2>
+    <p class="section-sub">Show up to any class — no sign-up needed for your trial</p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="icon">📍</div>
+        <h4>Location</h4>
+        <p>Hall 4, Sportcenter<br />Tilburg</p>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📅</div>
+        <h4>Classes</h4>
+        <p>Wednesday 17:00<br />Saturday 11:00 & 12:45</p>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📸</div>
+        <h4>Instagram</h4>
+        <a href="https://instagram.com/ArrichionBJJ" target="_blank">@ArrichionBJJ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="social"><a href="https://instagram.com/ArrichionBJJ" target="_blank">📸</a></div>
+  <p>© 2025 Arrichion BJJ — Tilburg University Student Association</p>
+  <p style="margin-top:6px"><a href="https://instagram.com/ArrichionBJJ" target="_blank">@ArrichionBJJ</a></p>
+</footer>
+
+</body>
+</html>
