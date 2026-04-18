@@ -42,6 +42,7 @@
       list-style: none;
       display: flex;
       gap: 24px;
+      align-items: center;
     }
     nav ul a {
       color: #ccc;
@@ -51,25 +52,36 @@
       transition: color 0.2s;
     }
     nav ul a:hover { color: var(--gold); }
+    nav .fosst-logo {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      margin-left: 16px;
+      filter: brightness(0) invert(1);
+      opacity: 0.85;
+    }
 
     /* HERO */
     .hero {
       background: var(--dark);
       color: #fff;
       text-align: center;
-      padding: 100px 24px;
+      padding: 100px 24px 80px;
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
-      content: '🦈';
-      font-size: 200px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0.04;
-      pointer-events: none;
+    .hero-logo {
+      width: 160px;
+      height: auto;
+      margin: 0 auto 28px;
+      display: block;
+    }
+    .hero-tagline {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      margin-bottom: 32px;
     }
     .hero h1 {
       font-size: clamp(2.2rem, 6vw, 4rem);
@@ -195,6 +207,67 @@
       font-size: 0.9rem;
     }
 
+    /* TEAM CAROUSEL */
+    .team { background: var(--dark); }
+    .team .section-title { color: #fff; }
+    .team .section-sub { color: #aaa; }
+    .carousel {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s ease;
+    }
+    .carousel-track img {
+      min-width: 100%;
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      border-radius: 16px;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.55);
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      font-size: 1.4rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+    .carousel-btn:hover { background: rgba(212,160,23,0.3); }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .carousel-dots .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #555;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .carousel-dots .dot.active { background: var(--gold); }
+
     /* ABOUT */
     .about { background: var(--cream); }
     .about-grid {
@@ -212,6 +285,26 @@
       color: var(--gold);
     }
     .about-card p { color: var(--gray); font-size: 0.9rem; margin-top: 6px; }
+
+    /* OTHER PHOTOS */
+    .gallery { background: #fff; }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .photo-grid img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .photo-grid img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
 
     /* CONTACT */
     .contact-grid {
@@ -249,6 +342,7 @@
     @media (max-width: 600px) {
       nav ul { display: none; }
       .hero { padding: 70px 20px; }
+      .carousel-track img { height: 300px; }
     }
   </style>
 </head>
@@ -262,12 +356,15 @@
     <li><a href="#schedule">Schedule</a></li>
     <li><a href="#join">Join</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><img src="images/fosst-logo.png" alt="FOSST" class="fosst-logo" /></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">🦈 STUDENT ASSOCIATION — TILBURG</div>
+  <img src="images/arrichion-logo.png" alt="Arrichion BJJ Logo" class="hero-logo" />
+  <p class="hero-tagline">We rise together, we conquer together</p>
   <h1>Train Brazilian<br /><span>Jiu Jitsu</span> at Tilburg</h1>
   <p>A student-led BJJ association at Tilburg University. All levels welcome — no experience needed. Come try it free for 2 sessions.</p>
   <a href="#contact" class="btn">Get 2 Free Trial Classes →</a>
@@ -277,6 +374,28 @@
 <div class="trial-banner">
   <p>🎉 Your first 2 classes are completely FREE — no commitment, no experience needed</p>
 </div>
+
+<!-- TEAM CAROUSEL -->
+<section class="team" id="team">
+  <div class="container">
+    <h2 class="section-title">Meet the <span>Team</span></h2>
+    <p class="section-sub">The people on the mats</p>
+    <div class="carousel" id="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <img src="images/team/team-1.jpg" alt="Team photo 1" />
+        <img src="images/team/team-2.jpg" alt="Team photo 2" />
+        <img src="images/team/team-3.jpg" alt="Team photo 3" />
+      </div>
+      <button class="carousel-btn prev" id="prevBtn">&#8249;</button>
+      <button class="carousel-btn next" id="nextBtn">&#8250;</button>
+    </div>
+    <div class="carousel-dots" id="carouselDots">
+      <div class="dot active" data-index="0"></div>
+      <div class="dot" data-index="1"></div>
+      <div class="dot" data-index="2"></div>
+    </div>
+  </div>
+</section>
 
 <!-- WHO CAN JOIN -->
 <section class="who" id="join">
@@ -365,6 +484,22 @@
   </div>
 </section>
 
+<!-- OTHER PHOTOS -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <h2 class="section-title">Life on the <span>Mats</span></h2>
+    <p class="section-sub">Snapshots from training and beyond</p>
+    <div class="photo-grid">
+      <img src="images/other/other-1.jpg" alt="Training photo" />
+      <img src="images/other/other-2.jpg" alt="Training photo" />
+      <img src="images/other/other-3.jpg" alt="Training photo" />
+      <img src="images/other/other-4.jpg" alt="Training photo" />
+      <img src="images/other/other-5.jpg" alt="Training photo" />
+      <img src="images/other/other-6.jpg" alt="Training photo" />
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
@@ -396,6 +531,26 @@
   <p>© 2025 Arrichion BJJ — Tilburg University Student Association</p>
   <p style="margin-top:6px"><a href="https://instagram.com/ArrichionBJJ" target="_blank">@ArrichionBJJ</a></p>
 </footer>
+
+<script>
+  const track = document.getElementById('carouselTrack');
+  const dots = document.querySelectorAll('.carousel-dots .dot');
+  let current = 0;
+  const total = track.children.length;
+
+  function goTo(index) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+  dots.forEach(dot => dot.addEventListener('click', () => goTo(Number(dot.dataset.index))));
+
+  // Auto-advance every 4 seconds
+  setInterval(() => goTo(current + 1), 4000);
+</script>
 
 </body>
 </html>
