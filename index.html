@@ -53,12 +53,12 @@
     }
     nav ul a:hover { color: var(--gold); }
     nav .fosst-logo {
-      height: 44px;
+      height: 38px;
       width: auto;
       object-fit: contain;
-      margin-left: 16px;
       filter: brightness(0) invert(1);
-      opacity: 0.85;
+      opacity: 0.8;
+      flex-shrink: 0;
     }
 
     /* HERO */
@@ -160,7 +160,7 @@
     }
     .card {
       background: #fff;
-      border-radius: 12px;
+      border-radius: 20px;
       padding: 28px 24px;
       text-align: center;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
@@ -178,7 +178,7 @@
     .schedule-card {
       background: var(--dark);
       color: #fff;
-      border-radius: 12px;
+      border-radius: 20px;
       padding: 28px 24px;
     }
     .schedule-card .day {
@@ -216,7 +216,7 @@
       max-width: 720px;
       margin: 0 auto;
       overflow: hidden;
-      border-radius: 16px;
+      border-radius: 28px;
     }
     .carousel-track {
       display: flex;
@@ -229,7 +229,7 @@
       object-fit: cover;
       object-position: center top;
       flex-shrink: 0;
-      border-radius: 16px;
+      border-radius: 28px;
     }
     .carousel-btn {
       position: absolute;
@@ -297,7 +297,7 @@
       width: 100%;
       height: 260px;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 20px;
       transition: transform 0.25s, box-shadow 0.25s;
       cursor: pointer;
     }
@@ -315,7 +315,7 @@
     }
     .contact-item {
       background: var(--cream);
-      border-radius: 12px;
+      border-radius: 20px;
       padding: 24px;
       text-align: center;
     }
@@ -356,8 +356,8 @@
     <li><a href="#schedule">Schedule</a></li>
     <li><a href="#join">Join</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><img src="images/fosst-logo.png" alt="FOSST" class="fosst-logo" /></li>
   </ul>
+  <img src="images/fosst-logo.png" alt="FOSST" class="fosst-logo" />
 </nav>
 
 <!-- HERO -->
