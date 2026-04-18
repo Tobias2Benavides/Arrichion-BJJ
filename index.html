@@ -324,11 +324,25 @@
       background: var(--dark);
       color: #888;
       text-align: center;
-      padding: 32px 24px;
+      padding: 48px 24px 32px;
       font-size: 0.85rem;
     }
     footer a { color: var(--gold); text-decoration: none; }
     footer .social { font-size: 1.5rem; margin-bottom: 12px; }
+    footer .footer-logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 0 auto 16px;
+      display: block;
+      opacity: 0.9;
+    }
+    footer .footer-tagline {
+      font-style: italic;
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
 
     @media (max-width: 600px) {
       nav ul { display: none; }
@@ -517,6 +531,8 @@
 
 <!-- FOOTER -->
 <footer>
+  <img src="images/arrichion-logo.png" alt="Arrichion BJJ" class="footer-logo" />
+  <p class="footer-tagline">We rise together, we conquer together</p>
   <div class="social"><a href="https://instagram.com/ArrichionBJJ" target="_blank">📸</a></div>
   <p>© 2025 Arrichion BJJ — Tilburg University Student Association</p>
   <p style="margin-top:6px"><a href="https://instagram.com/ArrichionBJJ" target="_blank">@ArrichionBJJ</a></p>
